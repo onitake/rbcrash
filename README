@@ -1,4 +1,174 @@
 Rainbow Crash
 =============
 
-Colorful illumination - it's 20% cooler.
+Colorful illumination - it's 20% cooler than just white.
+
+
+0. Contents
+-----------
+
+1. Description
+2. Copyright
+3. Prerequisites
+4. Building
+5. References
+
+1. Description
+--------------
+
+Ever fancied one of these color-changing lights?
+Don't want to spend hundreds of bucks on just a few dim LEDs?
+
+Rainbow Crash (or rbcrash in short) creates ambient lighting using high
+powered RGB LEDs. Color and light level can be controlled through any
+infrared remote, or automatically. The controlling software is
+open source, so you may even develop your own applications.
+
+The name Rainbow Crash is a reference to the unfavorable nickname of
+Rainbow Dash, one of the toy ponies manufactured by Hasbro.
+While no direct connection to the character is implied, the name relates
+to her colorful mane and the possibility that the device might literally
+crash and burn if not designed or built properly (we hope it won't of course).
+
+2. Copyright
+------------
+
+Rainbow Crash is Copyright (c) 2012 Gregor Riepl <onitake@gmail.com>
+All rights reserved.
+
+The terms under which the project is provided to you are outlined in the
+file LICENSE. Please contact the authors if you didn't receive the file.
+
+According to publicly available information, the name Rainbow Dash
+is trademarked by Hasbro, but Rainbow Crash is not. While there is a close
+similarity, the author believes the distinction is clear enough to
+avoid confusion. Additionally, the trademark does not pertain to electronic
+devices, illumination products or software.[1]
+Therefore, it should be safe to use.
+
+3. Prerequisites
+----------------
+
+In its current form, Rainbow Crash is not available as a finished product,
+but must be built by a moderately skilled hobbyist or electronics engineer.
+
+Circuit diagrams and boards were created using the free version of Eagle[2],
+which is required to modify and print them. PDF files and a parts list may
+be made available separately.
+
+The device uses a microcontroller. To build the firmware for it,
+GNU make, avr-gcc and avr-libc are needed. To flash the firmware onto
+the controller, a ISP flashing adapter and accompanying tools are required.
+Recommended are USBtiny[3] and avrdude. Porting to other 8bit microcontrollers
+is possible. Some development and testing has been done on Arduino.
+
+The board uses SMD parts to keep the size small. A sufficiently precise
+soldering iron and soldering skills are highly recommended. Reflow soldering
+is also possible with the appropriate equipment.
+
+The circuit board can be ordered from a prototyping service or etched by
+hand. It is single-layered but requires a full ground plane on the rear
+of the board.
+
+4. Building
+-----------
+
+a. Circuit board
+
+Printed circuit boards can be ordered for moderate prices from many
+prototyping services. If you want to etch or mill the board yourself, make
+sure to use double sided circuit board and cover the rear side with
+photo resist. You also need to create through-holes connecting the various
+parts to ground. If you don't have the proper tools, you may also use thin
+copper wire and solder it to both sides of each hole.
+
+b. Parts selection
+
+Most parts can be readily ordered from any larger electronic parts suppliers.
+Try Digi-Key[3], for example. Resistors can be from any manufacturer,
+provided they fulfill the described constraints. Diodes may be replaced with
+similar types, just make sure they have low forward voltage drop. Reverse
+breakdown voltage is also relevant in case of a short-circuit.
+Inductors should be similar to the suggested ones, just keep the package size
+and pad placement in mind.
+
+c. Soldering
+
+Some parts are very close to each other. Soldering integrated circuits first is
+recommended, then check how one part might obstruct another. The inductors must
+be soldered from the bottom, which is slightly difficult without reflow or
+tweezers. Cover the pads each with a drop of solder, then place the part
+and heat from both sides so it bonds.
+
+d. LEDs
+
+Most RGB LEDs from major manufacturers are very expensive (more than 10$/LED).
+There are various Asian parts retailers that offer much cheaper alternatives.
+
+Quality varies greatly, and the price is usually not a good indicator.
+We used LEDs from Guangmai[4], soldered to heat spreaders by a third party.
+The LEDs are very good, but the soldering job was very poor.
+Your mileage may vary.
+
+The LEDs must be connected in series, and the total forward voltage must be
+larger than the input voltage, or you will fry them. Note that different
+colors have different forward voltages, and LEDs will usually start conducting
+(and emitting light) before the forward voltage is reached.
+
+Example:
+Vfred = 2.4V, Vfgreen = 3.2V, Vfblue = 3.6V, 4 LEDs
+Vftotallow = 4 * 2.4 V = 9.6V
+Thus, the input voltage needs to be lower than 9.6V. Adding a safety margin
+of 20% gives:
+Vin = 4 * (2.4 * 0.8) = 7.68V
+The input voltage should thus be lower than about 7.5V.
+
+As long as your power supply can source the current, you may go much lower,
+but keep the voltage higher than about 3V or the microcontroller will not work.
+
+e. Cooling
+
+Colored LEDs generate a lot of heat. The power efficiency is not that low
+compared to other types of light generators, but can be less than 15% for
+red LEDs. This must be accounted for in the design of the LED mount.
+
+A light heatspreader made from aluminium and good air flow are highly
+recommended. Caution is also advised when touching the LEDs or heatsink
+after long periods of operation at high brightness.
+
+LEDs can take some amount of heat, but care must be taken to dissipate it
+quickly from the chip. The heatspreader will fulfill this purpose.
+
+f. Programming
+
+The microcontroller needs to be supplied with software before the lamp is
+operational. Some ready-made examples are provided such as a rainbow color
+changer or an infrared remote controlled ambient light.
+
+The source code comes with a makefile having a 'flash' target that will build
+one example program and use avrdude to write it to the microcontroller.
+Make sure to attach your flashing adapter before running avrdude.
+
+If you use the USBtiny adapter, both external and USB supplied power may be
+used. Make sure to connect only one power source at a time tough.
+
+The LEDs will flash during programming, as the share the data ports with the
+flash interface of the microcontroller. This is normal, but verification
+might fail. You can usually safely ignore the errors, but if the lamp
+doesn't work right, flash again until verification succeeds.
+
+g. Usage
+
+Once programmed and connected to a power supply, the lamp should be up and
+running. In rainbow mode, no external control is possible.
+
+If you use the IR remote software, key codes must be programmed before
+they are recognized. This is currently TODO.
+
+5. References
+-------------
+
+[1] http://tsdr.uspto.gov/#caseNumber=76448437&caseType=SERIAL_NO&searchType=statusSearch
+[2] http://www.cadsoftusa.com/ or http://www.cadsoft.de
+[3] http://www.digikey.com
+[4] http://www.szgmled.com

@@ -1,0 +1,11 @@
+*.o
+*~
+*.b#?
+*.s#?
+*.pdf
+*.ps
+*.elf
+*.lst
+*.map
+*.bin
+*.hex
