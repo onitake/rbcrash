@@ -1,0 +1,11 @@
+*.o
+*~
+*.pdf
+*.ps
+*.elf
+*.lst
+*.map
+*.bin
+*.hex
+*.bak
+*-bak
