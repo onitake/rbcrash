@@ -1,31 +1,27 @@
 /*
- * Rainbow Crash is Copyright (c) 2012-2014 Gregor Riepl <onitake@gmail.com>
+ * rbcrash - Rainbow Crash LED driver firmware
+ * 
+ * Copyright (c) 2012-2014, Gregor Riepl <onitake@gmail.com>
  * All rights reserved.
- *
- * The project, all circuit designs, circuit board layouts, program code and
- * other associated documents are provided to you under the following conditions:
- *
- *     Redistributions of source code, drawings, parts lists and any other
- *     documents required for creating derivative works must retain the above
- *     copyright notice, this list of conditions and the following disclaimer.
- *
- *     Redistributions in binary form, printable vector graphics, images and
- *     any documents required for direct reproduction must reproduce the above
- *     copyright notice, this list of conditions and the following disclaimer
- *     in the documentation and/or other materials provided with the distribution.
- *
- *     Modified PCB layouts must use a logo or other marking that is clearly
- *     distinct from the design included in the original version, including
- *     board revision and/or copyright marker.
- *
- * THIS PROJECT IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * 
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ * 
+ *    Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *    
+ *    Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
  * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
  * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */

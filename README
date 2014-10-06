@@ -2,3 +2,117 @@ Rainbow Crash
 =============
 
 Colorful illumination - it's 20% cooler.
+
+
+0. Contents
+-----------
+
+0. Contents
+1. Description
+2. License
+3. Tools
+4. Assembly
+5. Compilation
+6. Use
+7. References
+
+
+1. Description
+--------------
+
+Rainbow Crash is a high power color LED driver suitable for indoor lighting
+applications. It is based on the TPS61165 constant current step-up regulator,
+driving a chain of 350mA RGB LEDs. In the default configuration, the input
+voltage should be around 12V for 8 LEDs in series. Lower voltages are possible,
+as long as they are not below about 4V, or the microcontroller and the drivers
+will be underpowered. Higher voltages should only be chosen if more than 8 LEDs
+are driven.
+
+
+2. License
+----------
+
+The circuit design is released under the [CERN Open Hardware License v1.2][ohl].
+The firmware is covered by the [two-clause BSD license][bsd].
+
+All documents are copyright (c) 2012-2014 by Gregor Riepl <onitake@gmail.com>.
+
+The latest version can be retrieved from [Github][github].
+
+
+3. Tools
+--------
+
+The original circuit was designed using [Eagle][eagle]. An updated version of
+the circuit (2.0) was remade in [KiCAD][kicad].
+The firmware for the microcontroller is based on a simple Makefile,
+[avr-gcc][avrgcc], avr-libc and [avrdude][avrdude].
+The code should be easily adaptable to other Atmel toolchains.
+
+No [Arduino][arduino] or other external libraries were used; however, the code
+includes register definitions for the [Arduino Uno][uno] development platform.
+It was during the design phase and for debugging.
+
+
+4. Assembly
+-----------
+
+Except for the constant current drivers and the corresponding inductors, most
+parts should be easily obtainable from any electronic parts distributor.
+Some of the capacitors are also less common (10uF and 4.7uF SMD0805 ceramic),
+as well as the shunt resistors (0.57Ohms 1/8W).
+SMD0805/2012 was chosen due to good hand solderability and power rating.
+
+The inductor pads are generously dimensioned so they may accomodate various
+kinds of SMD inductors. The layout is based on Wuerth Electronics WE-PD M-sized
+shielded inductors, which are readily available from [Digi-Key][digikey].
+Their continuous current rating should be above 700mA, preferably around 1A.
+
+The intended IR receiver is a standard 38kHz demodulator with AGC. Other
+parts with similar specifications may be used; they are mostly compatible
+with each other and various consumer remotes.
+
+It is recommended to employ a reflow process if producing multiple driver
+boards. For single pieces or prototypes, hand soldering is also possible.
+
+Production runs should not include the ISP pin header P6. Instead, order the
+ATtiny25 microcontrollers preprogrammed or use a temporary connector to
+transfer the firmware.
+
+
+5. Compilation
+--------------
+
+All source code is contained in the single file pwm.c. Compiling is easiest
+with the [avr-gcc][avrgcc] toolchain and GNU make. If you would like to use
+other tools, make sure that your compiler understands ISO C99.
+
+To flash the firmware, the Makefile includes a `flash` target that executes
+[avrdude][avrdude] using options for the tinyUSB AVR ISP programmer.
+avrdude supports many different programmers, see the manual for the appropriate
+options.
+
+
+6. Use
+------
+
+pwm.c includes preprogrammed IR codes for an old infrared remote found in the
+garbage. It sends (incorrect) NEC codes, so those are the only IR codes
+currently supported by the firmware. Sony and RC5 codes are still being worked
+on, as well as a test tool for the Arduino Uno and possibly a firmware
+extension to support live programming.
+
+
+7. References
+-------------
+
+[ohl]: LICENSE-HARDWARE
+[bsd]: LICENSE-SOFTWARE
+[github]: https://github.com/onitake/rbcrash
+[eagle]: http://www.cadsoft.de
+[kicad]: http://www.kicad-pcb.org
+[arduino]: http://arduino.cc
+[uno]: http://arduino.cc/en/Main/ArduinoBoardUno
+[digikey]: http://www.digikey.com/catalog/en/partgroup/we-pd-series/38220
+[avrgcc]: http://www.nongnu.org/avr-libc/
+[avrdude]: http://www.nongnu.org/avrdude/
